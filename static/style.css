@@ -2,8 +2,18 @@
     DEMO STYLE
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
+.chart-wrapper {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+.btn-default
+{
+    background: #7386D5;
+    color: #fff;
+    border:none;
+}
+background-color: #68889E;
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
