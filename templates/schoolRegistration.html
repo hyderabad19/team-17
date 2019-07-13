@@ -19,6 +19,48 @@
   
   }
 </style>
+<<<<<<< HEAD
+<script type="text/javascript">
+  function validate()                                    
+{ 
+    var email = document.forms["form"]["email"];
+    var password=document.forms["form"]["password"]
+    if (email.value == ""|| email.value.indexOf("@", 0) < 0||email.value.indexOf(".", 0) < 0)                                   
+    { 
+        window.alert("Please enter a valid e-mail address."); 
+        email.focus(); 
+        return false; 
+    } 
+      if(form.password.value.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        form.password.focus();
+        return false;
+      }
+      
+      re = /[0-9]/;
+      if(!re.test(form.password.value)) {
+        alert("Error: password must contain at least one number (0-9)!");
+        form.password.focus();
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(form.password.value)) {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        form.password.focus();
+        return false;
+      }
+      re = /[A-Z]/;
+      if(!re.test(form.password.value)) {
+        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+        form.password.focus();
+        return false;
+      }
+   return true;
+    } 
+   
+</script>
+=======
+>>>>>>> e204725dec16f49a1873ee31724e6f04ae00f8af
 </head>
 <body>
   <div>
@@ -54,6 +96,56 @@
 
 
 <br><br><br>
+<div id="contain">
+  <div class="row">
+  <div class="col-xs-6 col-xs-offset-4" style="padding-right:180px;">
+  <div class="panel panel-primary" >
+  <div class="panel-heading" >
+                            <center><h4 >Register </h4></center>
+                        </div>
+            <div class="panel-body">
+<center>  <p class="text-warning"><b>Thanks for being a part of our foundation</b> </p></center>
+
+</div>
+<center>
+  
+<form action="/register" method="post" name="form" onsubmit="return validate()">
+  <div class="form-group">
+School Name :
+<input type="text" name="sname" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Principal Name  :
+<input type="text" name="pname" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Incharge Name :
+<input type="text" name="iname" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Mobile number :
+<input type="text" name="number" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Email :
+<input type="text" name="email" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+  <div class="form-group">
+Address :
+<input type="text" name="text" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Pincode :
+<input type="text" name="pincode" required class="form-control input-sm" ><br>
+</div>
+Password  :
+<input type="password" name="password" required class="form-control input-sm" ><br>
+</div>
+
+
+
+<div>
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#school_reg">
   Register School
