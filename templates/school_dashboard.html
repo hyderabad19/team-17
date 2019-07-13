@@ -55,20 +55,20 @@ filter: alpha(opacity=99); /* For IE8 and earlier */
               {% for reso in res %}
 
   <li class="list-group-item">
-<<<<<<< HEAD
+
 <div class="card bg-light mb-3" style="width: 18rem; background-color: transparent;" >
   <div class="card-body" style="padding-top: 50px;padding-bottom: 59px ;background-color: transparent;" >
     <h5 class="card-title">Resource 1</h5>
     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
     <p class="card-text" >Description</p>
-=======
+
 <div class="card" style="width: 18rem;" >
   <div class="card-body" style="padding-top: 50px;padding-bottom: 59px " >
     <h5 class="card-title"> {{reso.name}} </h5>
     <h6 class="card-subtitle mb-2 text-muted"> {{reso.category}} </h6>
     <p class="card-text"> {{reso.desp}} </p>
     {% if reso.avail is True %}
->>>>>>> 4248ea5944d98a391c7eaf1f401a154d3df0560a
+
       <button type="button" class="btn btn-success">Resource available</button>
     {% endif %}
     {% if resmo.avail is False %}
