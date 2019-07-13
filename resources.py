@@ -14,6 +14,7 @@ db = firebase.database()
 def add_resource():
     if request.method == 'POST':
         print(request.form)
+        
         return redirect('/home/resource')
     elif request.method == 'GET':
         return render_template('resource_add.html')
