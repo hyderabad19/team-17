@@ -31,7 +31,7 @@
                 <ul class="list-unstyled components">
                     
                     <li>
-                        <a href="/admin/dashboard">Home</a>
+                        <a href="/admin/dashboard">Dashboard</a>
                     </li>
                     
                     <li>
@@ -71,7 +71,18 @@
                         
                     </div>
                 </nav>
-
+                  <div class="container">
+<div class="wrapper">
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+      <div class="title text-center mb-5">
+        
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+  </div>
                 
                  
          
@@ -158,7 +169,50 @@
          <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
          <!-- Bootstrap Js CDN -->
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script >
+    let ctx = document.getElementById('myChart').getContext('2d');
+let labels = ['Utilised', 'idle'];
+let colorHex = ['#FB3640', '#EFCA08'];
+let myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    datasets: [{
+      data: [50, 50],
+      backgroundColor: colorHex
+    }],
+    labels: labels
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'bottom'
+    },
+    plugins: {
+      datalabels: {
+        color: '#fff',
+        anchor: 'end',
+        align: 'start',
+        offset: -10,
+        borderWidth: 2,
+        borderColor: '#fff',
+        borderRadius: 25,
+        backgroundColor: (context) => {
+          return context.dataset.backgroundColor;
+        },
+        font: {
+          weight: 'bold',
+          size: '10'
+        },
+        formatter: (value) => {
+          return value + ' %';
+        }
+      }
+    }
+  }
+})
+</script>
          <script type="text/javascript">
      
              $(document).ready(function () {

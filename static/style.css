@@ -3,8 +3,8 @@
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 .chart-wrapper {
-  width: 500px;
-  height: 500px;
+  width: 20%;
+  height: 20%;
   margin: 0 auto;
 }
 .btn-default
@@ -13,12 +13,13 @@
     color: #fff;
     border:none;
 }
-background-color: #68889E;
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
 }
-
+a{
+    color: white;
+}
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
@@ -26,9 +27,12 @@ p {
     line-height: 1.7em;
     color: #999;
 }
-
-a, a:hover, a:focus {
-    color: inherit !important;
+a{
+    color: white;
+}
+a:hover {
+    background-color: white;
+    color:  #7386D5;
     text-decoration: none !important;
     transition: all 0.3s;
 }
