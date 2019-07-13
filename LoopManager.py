@@ -44,7 +44,7 @@ def selectschools():
         d = dict()
         d['c_name'] = c_name
         d['schools_present'] = sel_list
-        d['school_count'] = len(sel_lis t)
+        d['school_count'] = len(sel_list)
         ref = db.child("clusters").push(d)
         clust_id = ref['name']
         for school in sel_list:

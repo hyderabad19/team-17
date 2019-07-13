@@ -11,7 +11,8 @@
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         
-          <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+          <link rel="stylesheet" type=”text/css” href="{{url_for('static',filename='style.css')}}">
+          
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Our Custom CSS -->
@@ -31,14 +32,14 @@
                 <ul class="list-unstyled components">
                     
                     <li>
-                        <a href="/admin/dashboard">Dashboard</a>
+                        <a style="color:wheat"href="/admin/dashboard">Dashboard</a>
                     </li>
                     
                     <li>
-                        <a href="/admin/cluster">Create Cluster</a>
+                        <a style="color:wheat" href="/admin/cluster">Create Cluster</a>
                     </li>
                     <li>
-                        <a href="verify_resources.html">Verify Resources</a>
+                        <a style="color:wheat" href="verify_resources.html">Verify Resources</a>
                     </li>
           
           <li>
@@ -48,7 +49,7 @@
               </button>
             </li>
           <li>
-            <a href="/">Logout</a>
+            <a href="/" style="color:wheat">Logout</a>
           </li>
                 </ul>
 
@@ -77,8 +78,9 @@
       <div class="title text-center mb-5">
         
       </div>
-      <div class="chart-wrapper">
-        <canvas id="myChart"></canvas>
+      <h2 class="">Resource Utilisation Chart:</h1>
+      <div class="chart-wrapper" style="width: 40%;">
+        <canvas style="width: 40%" id="myChart"></canvas>
       </div>
     </div>
   </div>
