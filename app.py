@@ -90,8 +90,10 @@ def reg_school():
         lat = request.form['lat']
         lon = request.form['lon']
         user = auth.create_user_with_email_and_password(email,password)
-        print(user['localId'])
-        db.child("schools").child(user['localId']).child().set({
+        u_idx = user['loaclId']
+        print(u_idx)
+
+        db.child("schools").child(u_idx).child().set({
             "name": school_name,
             "email": email,
             "number": number,
@@ -101,7 +103,8 @@ def reg_school():
             "address": address,
             "cluster": cluster,
             "lat": lat,
-            "lon": lon 
+            "lon": lon,
+            "u_id": u_idx
         })
         session['s_uid'] = user['localId']
         return render_template("loopdash.html")
