@@ -18,7 +18,7 @@ body {
     background: #fafafa;
 }
 a{
-    color: white;
+    color: white !important;
 }
 p {
     font-family: 'Poppins', sans-serif;

@@ -119,7 +119,21 @@ def loopdash():
 @app.route("/admin/dashboard", methods=['POST', 'GET'])
 def lpdashboard():
     if request.method == 'GET':
-        return render_template("loopdash.html")
+        cluster = db.child("clusters").shallow().get()
+        clus_key = cluster.val()
+        keyList = [i for i in list(clus_key)]
+        lis=[]
+        for i in keyList:
+            clust_e = db.child("clusters").child(i).get().val()
+            li1=[]
+            li1.append(clust_e['c_name'])
+            names = []
+            for j in clust_e['schools_present']:
+                x = db.child("schools").child(j).get().val()
+                names.append(x['name'])
+            li1.append(names)
+        lis.append(li1)
+        return render_template("loopdash.html",clus = lis)
 
 @app.route("/admin/verify_resources")
 def verifyresources():
