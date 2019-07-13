@@ -106,6 +106,57 @@
   width:100%;height:100%;background-repeat:no-repeat;background-size:cover;background-position:50%;
 }
 
+.mySlides {display:none;
+  height=500px;
+  width=800px}
+
+  .container
+{
+      width:90%; 
+      height:150%;    
+      margin:auto;   
+      overflow:8%; 
+       
+}
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 60px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+.fa-instagram {
+  background: #125688;
+  color: white;
+  text align:center;
+}
+
+
  </style>
 
 </head>
@@ -220,6 +271,47 @@
                 
             </div>
       </div>
+
+       <center>
+  <div >
+  <img class="mySlides" src="https://loopeducation.weebly.com/uploads/1/0/8/8/108804851/img-8998_orig.jpg" style="height:500px; width:1250px">
+  <img class="mySlides" src="https://loopeducation.weebly.com/uploads/1/0/8/8/108804851/img-8826_orig.jpg" style="height:500px; width:1250px">
+  <img class="mySlides" src="https://loopeducation.weebly.com/uploads/1/0/8/8/108804851/img-8873_orig.jpg" style="height:500px; width:1250px">
+</div>
+ </center>
+
+  <script>
+  
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
+<div>
+      
+
+      
+      <center><h3 color="black"><b>Follow us!</b></h3></center><br>
+      <center>
+<a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-twitter"></a>
+<a href="#" class="fa fa-google"></a>
+<a href="#" class="fa fa-linkedin"></a>
+<a href="#" class="fa fa-instagram"></a>
+</center>
+      </div>
+ 
 
 
 </body>
