@@ -104,7 +104,7 @@ def reg_school():
             "lon": lon 
         })
         session['s_uid'] = user['localId']
-        return render_template("schoolRegistration.html")
+        return render_template("loopdash.html")
 
     return render_template("schoolRegistration.html")
 
