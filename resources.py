@@ -4,7 +4,7 @@ from config import Config1
 
 c1 = Config1()
 
-app = Flask(__name__)
+app = Flask("__main__")
 
 firebase = pyrebase.initialize_app(c1.giveConfig())
 
@@ -30,7 +30,7 @@ def add_resource():
                 "avail":avail,
                 "verified":False
             })
-            db.child('loopm').child('Q7F9y3WfP4VONOlNoLYTzJuHjSw2').child('requests').push({
+            db.child('loopman').child('Q7F9y3WfP4VONOlNoLYTzJuHjSw2').child('requests').push({
                 "sch_uid":session['s_uid'],
                 "res_id":ref['name']
             })
