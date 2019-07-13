@@ -8,6 +8,8 @@ firebase = pyrebase.initialize_app(c1.giveConfig())
 
 auth = firebase.auth()
 
+db = firebase.database()
+
 app = Flask("__main__")
 
 
@@ -28,9 +30,18 @@ def register():
         number = request.form['number']
         user = auth.create_user_with_email_and_password(email,password)
         #auth.send_email_verification(user['idToken'])
-        print(user['idTokens'])
-    return "success"
-
+        
+        #user = auth.sign_in_with_email_and_password(email,password)
+        print(user['localId'])
+        db.child("loopman").child(user['localId']).child().set({
+            "name": name,
+            "email": email,
+            "number": number
+        
+        })
+        return render_template("signinall.html")
+    return render_template("signinall.html")
+#3cByf1KR2xbTzpaIB8JOkEEqCxt1
 
 @app.route("/signin-sch",methods = ['POST','GET'])
 def signinsch():
@@ -40,7 +51,7 @@ def signinsch():
         password = request.form['password']
 
         user = auth.sign_in_with_email_and_password(email,password)
-        
+
     return "success"
         
 @app.route("/signin-lm",methods = ['POST','GET'])
