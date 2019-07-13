@@ -13,7 +13,7 @@ db = firebase.database()
 
 app = Flask("__main__")
 
-
+app.config['SECRET_KEY'] = 'loopedu'
 
 @app.route("/",methods = ['POST','GET'])
 def home():
@@ -22,6 +22,8 @@ def home():
 @app.route("/signinall")
 def signinall():
     return render_template("signinall.html")
+
+
 @app.route("/register",methods = ['POST','GET'])
 def register():
     if request.method == 'POST':
@@ -34,13 +36,14 @@ def register():
         
         #user = auth.sign_in_with_email_and_password(email,password)
         print(user['localId'])
+        session['l_uid'] = user['localId']
         db.child("loopman").child(user['localId']).child().set({
             "name": name,
             "email": email,
             "number": number
         
         })
-        return render_template("signinall.html")
+        return redirect('/admin/dashboard')
     return render_template("signinall.html")
 #3cByf1KR2xbTzpaIB8JOkEEqCxt1
 
@@ -52,6 +55,7 @@ def signins_ch():
         password = request.form['password']
 
         user = auth.sign_in_with_email_and_password(email,password)
+        session['s_uid'] = user['localId']
 
     return "success"
         
@@ -62,12 +66,13 @@ def signin_lm():
             email = request.form['email']
             password = request.form['password']
             user = auth.sign_in_with_email_and_password(email,password)
-            print(user)
-            
-            return render_template("signinall.html")
+            session['l_uid'] = user['localId']
+            print(session['l_uid'])
+            return redirect('/admin/dashboard')
 
     
         except:
+            print('login error')
             return render_template("signinall.html")
 
 @app.route("/reg-school",methods=["POST","GET"])
@@ -98,6 +103,7 @@ def reg_school():
             "lat": lat,
             "lon": lon 
         })
+        session['s_uid'] = user['localId']
         return render_template("schoolRegistration.html")
 
     return render_template("schoolRegistration.html")
@@ -108,7 +114,8 @@ def loopdash():
 
 @app.route("/admin/dashboard", methods=['POST', 'GET'])
 def lpdashboard():
-    return render_template("lpanalytics.html")
+    if request.method == 'GET':
+        return render_template("loopdash.html")
 
 @app.route("/admin/verify_resources")
 def verifyresources():

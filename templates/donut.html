@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Getting Started with Chart JS</title>
+  </head>
+  <body>
+    <canvas id="myChart"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+    <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'doughnut',
+
+        // The data for our dataset
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "My First dataset",
+                backgroundColor: ['yellow', 'orange', 'red', 'green', 'blue', 'purple', 'indigo'],
+                borderColor: '#fff',
+                data: [15, 10, 8, 9, 20, 15, 7],
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+    </script>
+
+  </body>
+</html>
