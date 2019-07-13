@@ -63,7 +63,9 @@
                 </nav>
 <div class="container">
   {% for i, j in f %}
-  
+     {{ j.sname }} {{ j.resname }}
+     <a color:'green' href="/admin/verify_resources/accept/<i>">Accept</a>
+     <a color:'red' href="/admin/verify_resources/decline/<i>">Decline</a>
   {% endfor %}
 
 

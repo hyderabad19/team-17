@@ -60,13 +60,32 @@ def verifyresources():
         return redirect("admin/cluster")
     g = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").shallow().get()
     f = []
-    for i in g:
-        gg = i
-        f.append({
-        id:gg,
-        res:db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(gg).get().val()
-        })
+    for i in g.val():
+        v = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get()
+        h = db.child("schools").child(v.val()['scid']).get()
+        j = db.child("resources").child(v.val()['resid']).get()
+        f.append({i, {'sname':h.val()['name'], 'resname':j.val()['name']}})
     return render_template("verify_resources.html", f = f)
 
+@app.route("/admin/verify_resources/accept/<i>")
+def accept(i):
+    if i not None:
+        re = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get().val()
+        resource = db.child("schools").child(re['sch_id']).child("resources").child(re['res_id']).get().val()
+        school = db.child("schools").child(re['sch_id']).get().val()
+        child("schools").child(re['scid']).child("resources").child(re['res_id']).update({
+        "verified":True
+        })
+        db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
+        return render_template("verify_resources.html")
+
+@app.route("/admin/verify_resources/decline/<i>")
+def decline(i):
+    if i not None:
+        re = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get().val()
+        resource = db.child("schools").child(re['sch_id']).child("resources").child(re['res_id']).get().val()
+        school = db.child("schools").child(re['sch_id']).get().val()
+        db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
+        return render_template("verify_resources.html")
 if __name__ == "__main__":
     app.run(debug = True)
