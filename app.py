@@ -2,6 +2,7 @@ import pyrebase
 from flask import *
 from config import Config1
 from formula import distpy
+import geopy.distance
 
 c1 = Config1()
 
@@ -126,17 +127,20 @@ def verifyresources():
 def lpclusterform():
 
     if request.method == 'POST':
-        if request.form['Submit'] == 'add':
-            schools = db.child("schools").get().val()
-            scls = []
-            lplat = int(request.form['lat'])
-            lplong = int(request.form['long'])
-            radius = int(request.form['radius'])
-            for i in schools.values():
-                if i.values()['inCluster'] != None and i.values()['inCluster']!= 'yes':
-                    if distpy(lplat,i['latitude'],lplong,i['longitude']) <= radius:
-                        scls.append(i.values())
-            return render_template("schools_list.html", scls = scls)
+        schools = db.child("schools").get().val()
+        scls = []
+        lplat = float(request.form['lat'])
+        lplong = float(request.form['long'])
+        radius = float(request.form['radius'])
+        for i in schools.values():
+            if i['cluster'] != None and i['cluster']!= 'yes':
+                coords_1 = (lplat,lplong)
+                coords_2 = (float(i['lat']), float(i['lon']))
+                if geopy.distance.vincenty(coords_1, coords_2) <= radius:
+                    print(geopy.distance.vincenty(coords_1, coords_2))
+                    scls.append(i)
+            print(scls)
+        return render_template("schools_list.html", scls = scls)
     return render_template("clusterform.html")
 
 @app.route("/admin/cluster/schools_list")
