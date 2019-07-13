@@ -8,6 +8,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
+             body {
+ background-image: url("https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+
+}
+
+
+    div {
+opacity: 0.99;
+
+filter: alpha(opacity=99); /* For IE8 and earlier */
+
+}
     .column {
   float: left;
   width: 50%;
@@ -22,7 +36,7 @@
 </style>
 </head>
 <body>
-<div class="jumbotron">
+<div class="jumbotron" style="background: transparent;">
     <table border="0">
     <tr>
         <td>
@@ -34,15 +48,15 @@
 </table>
 
 <hr>
-    <div class="row">
-        <div class="column">
+    <div class="row" style="background: transparent;">
+        <div class="col-" style="background: transparent;">
             <ul class="list-group">
   <li class="list-group-item">
-<div class="card" style="width: 18rem;" >
-  <div class="card-body" style="padding-top: 50px;padding-bottom: 59px " >
+<div class="card bg-light mb-3" style="width: 18rem; background-color: transparent;" >
+  <div class="card-body" style="padding-top: 50px;padding-bottom: 59px ;background-color: transparent;" >
     <h5 class="card-title">Resource 1</h5>
     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Description</p>
+    <p class="card-text" >Description</p>
       <button type="button" class="btn btn-success">Resource available</button>
       <button type="button" class="btn btn-danger">Resource Unavailable</button>
       <button type="button" class="btn btn-default">Not Verified</button><br>
@@ -55,12 +69,15 @@
     </ul>
 
         </div>
-        <div class="column">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Add Resource</button>
-<button type="button" class="btn btn-default btn-lg btn-block">Request Resource</button>
+        <!--&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-->
+        <div class="col" style="background: transparent;">
+            <button type="button" class="btn btn-primary btn-lg btn-block" >Add Resource</button>
+<button type="button" class="btn btn-primary btn-lg btn-block">Request Resource</button>
                     <ul class="list-group">
+                    </div>
+                    <div class="col-" style="background: transparent;">
   <li class="list-group-item">
-<div class="card" style="width: 18rem; " >
+<div class="card bg-light mb-3" style="width: 18rem; " >
   <div class="card-body" >
     <h5 class="card-title">Resource 1</h5>
     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
