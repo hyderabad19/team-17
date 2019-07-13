@@ -2,10 +2,16 @@
 <html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-  <title></title>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <style >
+    <!--jQuery library--> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Latest compiled and minified JavaScript--> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loop Foundation</title>
+  <style>
  .navbar-logo
   {
   
@@ -48,67 +54,83 @@
 
 
 <br><br><br>
-<div id="contain">
-  <div class="row">
-  <div class="col-xs-6 col-xs-offset-4" style="padding-right:180px;">
-  <div class="panel panel-primary" >
-  <div class="panel-heading" >
-                            <center><h4 >Register </h4></center>
-                        </div>
-            <div class="panel-body">
-<center>  <p class="text-warning"><b>Thanks for being a part of our foundation</b> </p></center>
 
-</div>
-<center>
-  
-<form action="/register" method="post" >
-  <div class="form-group">
-School Name :
-<input type="text" name="sname" required class="form-control input-sm" ><br>
-</div>
-<div class="form-group">
-Principal Name  :
-<input type="text" name="pname" required class="form-control input-sm" ><br>
-</div>
-<div class="form-group">
-Incharge Name :
-<input type="text" name="iname" required class="form-control input-sm" ><br>
-</div>
-<div class="form-group">
-Mobile number :
-<input type="text" name="number" required class="form-control input-sm" ><br>
-</div>
-<div class="form-group">
-Email :
-<input type="text" name="email" required class="form-control input-sm" ><br>
-</div>
-<div class="form-group">
-  <div class="form-group">
-Address :
-<input type="text" name="text" required class="form-control input-sm" ><br>
-</div>
-<div class="form-group">
-Pincode :
-<input type="text" name="email" required class="form-control input-sm" ><br>
-</div>
-Password  :
-<input type="password" name="pass" required class="form-control input-sm" ><br>
-</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#school_reg">
+  Register School
+</button>
 
+<div class="modal fade" id="school_reg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Scool Registration</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/reg-school" method="post" >
+          <div class="form-group">
+        School Name :
+        <input type="text" name="sname" required class="form-control input-sm" ><br>
+        </div>
+        <div class="form-group">
+        Principal Name  :
+        <input type="text" name="pname" required class="form-control input-sm" ><br>
+        </div>
+        <div class="form-group">
+        Incharge Name :
+        <input type="text" name="iname" required class="form-control input-sm" ><br>
+        </div>
+        <div class="form-group">
+        Mobile number :
+        <input type="number" name="number" required class="form-control input-sm" ><br>
+        </div>
+        <div class="form-group">
+        Email :
+        <input type="email" name="email" required class="form-control input-sm" ><br>
+        </div>
+        <div class="form-group">
+            Latitude :
+            <input type="text" name="lat" required class="form-control input-sm" ><br>
+            </div>
+         <div class="form-group">
+            Longitude :
+                <input type="text" name="lon" required class="form-control input-sm" ><br>
+                </div>
+        <div class="form-group">
+          <div class="form-group">
+        Address :
+        <input type="textarea" name="address" required class="form-control input-sm" ><br>
+        </div>
+        <div class="form-group">
+        Pincode :
+        <input type="number" name="pin" required class="form-control input-sm" ><br>
+        </div>
+        Password  :
+        <input type="password" name="password" required class="form-control input-sm" ><br>
+        </div>
+        
+        <div>
+          <input type="hidden" name="cluster" value="No">
+        </div>
+        
+        
+        <div>
+        
+        <br><br>
+        </div>
 
-
-<div>
-
-<input type="submit" name="signup" value="signup">
-
-<br><br>
-</div>
-
-</form>
-</center>
-</div>
-</div>
-</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" name="signup" >Sign Up</button>
+        </div>
+        
+        </form>
+      </div>
+     
+    </div>
+  </div>
 </div>
 
 </body>

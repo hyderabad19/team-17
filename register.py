@@ -44,7 +44,7 @@ def register():
 #3cByf1KR2xbTzpaIB8JOkEEqCxt1
 
 @app.route("/signin-sch",methods = ['POST','GET'])
-def signinsch():
+def signins_ch():
     if request.method == 'POST':
         
         email = request.form['email']
@@ -55,7 +55,7 @@ def signinsch():
     return "success"
         
 @app.route("/signin-lm",methods = ['POST','GET'])
-def signinlm():
+def signin_lm():
     if request.method == 'POST':
         try:
             email = request.form['email']
@@ -63,12 +63,47 @@ def signinlm():
             user = auth.sign_in_with_email_and_password(email,password)
             print(user)
             
-            return "successful"
+            return render_template("signinall.html")
 
     
         except:
-            return "Check your credentials"
+            return render_template("signinall.html")
 
+@app.route("/reg-school",methods=["POST","GET"])
+def reg_school():
+    if request.method == 'POST':
+        school_name = request.form['sname']
+        principal = request.form['pname']
+        incharge = request.form['iname']
+        number = request.form['number']
+        email = request.form['email']
+        address = request.form['address']
+        pincode = request.form['pin']
+        password = request.form['password']
+        cluster = request.form['cluster']
+        lat = request.form['lat']
+        lon = request.form['lon']
+        user = auth.create_user_with_email_and_password(email,password)
+        print(user['localId'])
+        db.child("schools").child(user['localId']).child().set({
+            "name": school_name,
+            "email": email,
+            "number": number,
+            "principle": principal,
+            "incharge": incharge,
+            "pincode": pincode,
+            "address": address,
+            "cluster": cluster,
+            "lat": lat,
+            "lon": lon 
+        })
+        return render_template("schoolRegistration.html")
+
+    return render_template("schoolRegistration.html")
+
+@app.route("/loop")
+def loopdash():
+    return render_template("loopdash.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
