@@ -69,11 +69,11 @@ def verifyresources():
 
 @app.route("/admin/verify_resources/accept/<i>")
 def accept(i):
-    if i not None:
+    if i:
         re = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get().val()
         resource = db.child("schools").child(re['sch_id']).child("resources").child(re['res_id']).get().val()
         school = db.child("schools").child(re['sch_id']).get().val()
-        child("schools").child(re['scid']).child("resources").child(re['res_id']).update({
+        db.child("schools").child(re['scid']).child("resources").child(re['res_id']).update({
         "verified":True
         })
         db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
@@ -81,11 +81,13 @@ def accept(i):
 
 @app.route("/admin/verify_resources/decline/<i>")
 def decline(i):
-    if i not None:
+    if i:
         re = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get().val()
         resource = db.child("schools").child(re['sch_id']).child("resources").child(re['res_id']).get().val()
         school = db.child("schools").child(re['sch_id']).get().val()
         db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
         return render_template("verify_resources.html")
+
+
 if __name__ == "__main__":
     app.run(debug = True)
