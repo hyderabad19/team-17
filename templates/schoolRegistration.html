@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<title></title>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-</head>
-<style >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+  <title></title>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <style >
  .navbar-logo
   {
   
@@ -14,48 +13,85 @@
   
   }
 </style>
+</head>
 <body>
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <div>
+    <nav   class="navbar navbar-inverse navbar-fixed-top">
+        
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-logo" href="index.html"><b>L O O P F O U N D A T I O N</b><br>      Hyderabad</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+              <li><a href="home.html "><span class="glyphicon glyphicon-home"></span><b>Home</b></a></li>
+            <li><a href="index.html"><b> About us</b></a></li>
+                        <li><a href="/registerall "></span><b>Registration</b></a></li>
+                        
+            <li><a href="/login"><b>Login</b></a></li>
+            <li><a href="patners.html"><b>Partners</b></a></li>
+            
+            <li><a href="team.html"><b>Team</b></a></li>
+            <li><a href="contact.html"><span class="glyphicon glyphicon-earphone"></span><b>Contact us</b></a></li>
+                    </ul>
+        </div>
       </div>
-      <div class="modal-body">
-        <form action="/register" method="post" >
-	<div class="form-group">
-School Name	:
+    </nav>
+    </div>
+  
+
+
+
+<br><br><br>
+<div id="contain">
+  <div class="row">
+  <div class="col-xs-6 col-xs-offset-4" style="padding-right:180px;">
+  <div class="panel panel-primary" >
+  <div class="panel-heading" >
+                            <center><h4 >Register </h4></center>
+                        </div>
+            <div class="panel-body">
+<center>  <p class="text-warning"><b>Thanks for being a part of our foundation</b> </p></center>
+
+</div>
+<center>
+  
+<form action="/register" method="post" >
+  <div class="form-group">
+School Name :
 <input type="text" name="sname" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Principal Name	:
+Principal Name  :
 <input type="text" name="pname" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Incharge Name	:
+Incharge Name :
 <input type="text" name="iname" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Mobile number	:
+Mobile number :
 <input type="text" name="number" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Email	:
+Email :
 <input type="text" name="email" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-	<div class="form-group">
-Address	:
+  <div class="form-group">
+Address :
 <input type="text" name="text" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Pincode	:
+Pincode :
 <input type="text" name="email" required class="form-control input-sm" ><br>
 </div>
-Password	:
+Password  :
 <input type="password" name="pass" required class="form-control input-sm" ><br>
 </div>
 
@@ -69,13 +105,11 @@ Password	:
 </div>
 
 </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+</center>
 </div>
+</div>
+</div>
+</div>
+
 </body>
 </html> 
