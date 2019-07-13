@@ -126,18 +126,18 @@ def verifyresources():
 def lpclusterform():
 
     if request.method == 'POST':
-        if request.form['submit'] == 'add':
+        if request.form['Submit'] == 'add':
             schools = db.child("schools").get().val()
             scls = []
-            lplat = request.form['lat']
-            lplong = request.form['long']
-            radius = request.form['radius']
+            lplat = int(request.form['lat'])
+            lplong = int(request.form['long'])
+            radius = int(request.form['radius'])
             for i in schools.values():
                 if i.values()['inCluster'] != None and i.values()['inCluster']!= 'yes':
                     if distpy(lplat,i['latitude'],lplong,i['longitude']) <= radius:
                         scls.append(i.values())
             return render_template("schools_list.html", scls = scls)
-    return redirect("clusterform.html")
+    return render_template("clusterform.html")
 
 @app.route("/admin/cluster/schools_list")
 def selectschools():
