@@ -76,6 +76,7 @@ a:hover {
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    background-image: linear-gradient(rgb(251,54,64),rgb(239,202,8));
 }
 
 #sidebar.active {

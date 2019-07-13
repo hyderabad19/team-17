@@ -74,7 +74,7 @@
                 </nav>
                   <div class="container">
 <div class="wrapper">
-    <div class="container d-flex flex-column justify-content-center align-items-center">
+    <div class="container d-flex flex-column justify-content-left align-items-left">
       <div class="title text-center mb-5">
         
       </div>
@@ -85,7 +85,25 @@
     </div>
   </div>
   </div>
-                
+
+<div class="container">
+  <div class="container justify-content-left col col-lg-3">
+    {% for i in clus%}
+      <ul class="list-group">
+        <h4>Name of the cluster:</h4>
+        <li class="list-group-item">{{i[0]}}</li>
+        <h4>Schools Under Cluster:</h4>
+        {% for j in i[1] %}
+        <ul class="list-group">
+         
+          <li class="list-group-item">{{j}}</li>
+        </ul>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</div>
+            
                  
          
                 </div>
