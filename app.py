@@ -243,6 +243,44 @@ def show_resource():
         return redirect('/landing')
     return render_template('school_dashboard.html')
 
+
+@app.route("/admin/verify_resources/", methods=['POST','GET'])
+def verify_r():
+    g = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").shallow().get()
+    f = []
+    if g.val():
+        for i in g.val():
+            v = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get()
+            h = db.child("schools").child(v.val()['sch_uid']).get()
+            j = db.child('schools').child(v.val()['sch_uid']).child("resources").child(v.val()['res_id']).get()
+            f.append({'resid':i,'data': {'sname':h.val()['name'], 'resname':j.val()['name']}})
+        return render_template("verify_resources.html", f = f,len = len(f))
+    else:
+        return render_template("verify_resources.html",text="No requests!")
+
+@app.route("/admin/verify_resources/accept/<i>")
+def accept(i):
+    if i:
+        re = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get().val()
+        resource = db.child("schools").child(re['sch_uid']).child("resources").child(re['res_id']).get().val()
+        school = db.child("schools").child(re['sch_uid']).get().val()
+        db.child("schools").child(re['sch_uid']).child("resources").child(re['res_id']).update({
+        "verified":True
+        })
+        db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
+        return redirect("/admin/verify_resources/")
+
+@app.route("/admin/verify_resources/decline/<i>")
+def decline(i):
+    if i:
+        re = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get().val()
+        resource = db.child("schools").child(re['sch_uid']).child("resources").child(re['res_id']).get().val()
+        school = db.child("schools").child(re['sch_uid']).get().val()
+        db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
+        return redirect("/admin/verify_resources")
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
