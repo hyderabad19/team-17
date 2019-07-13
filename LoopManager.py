@@ -10,9 +10,12 @@ db = firebase.database()
 @app.route("/admin/dashboard", methods=['POST', 'GET'])
 def lpdashboard():
     return render_template("m1.html")
+
+
 @app.route("/admin/clusterform")
 def lpclusterform():
-    render_template("cluster_form.html")
+    render_template("clusterform.html")
+
 
 @app.route("/admin/verify_resources")
 def verifyresources():
