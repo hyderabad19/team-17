@@ -21,12 +21,18 @@ def add_resource():
         if 's_uid' in session:
             uid = session['s_uid']
             avail = True
-            db.child('schools').child(uid).child('resources').child().set({
+            ref = db.child('schools').child(uid).child('resources').child().push()
+            ref.set({
                 "name":name,
                 "desp":desp,
                 "capacity":capacity,
                 "category":categ,
-                "avail":avail
+                "avail":avail,
+                "verified":False
+            })
+            db.child('loopm').child('Q7F9y3WfP4VONOlNoLYTzJuHjSw2').child('requests').push({
+                "sch_uid":session['s_uid'],
+                "res_id":ref['name']
             })
         else:
             return redirect('/landing')
@@ -44,10 +50,10 @@ def show_resource():
         for i in resources.values():
             m = i.values()
             res.append(m)
-        return render_template('resource.html',res = res)
+        return render_template('school_dashboard.html',res = res)
     else:
         return redirect('/landing')
-    return render_template('resource.html')
+    return render_template('school_dashboard.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
