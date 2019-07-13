@@ -143,26 +143,30 @@ def lpclusterform():
         return render_template("schools_list.html", scls = scls)
     return render_template("clusterform.html")
 
-@app.route("/admin/cluster/schools_list")
+@app.route("/admin/cluster/schools_list",methods=['POST','GET'])
 def selectschools():
     if request.method == 'POST':
-        selected = request.form['listofschools']
+        selected = request.form.getlist('listofschools')
+        print(selected)
         sel_list = []
         for i in selected:
             sel_list.append(i)
         c_name = request.form['cname']
-        d = dict()
-        d['c_name'] = c_name
-        d['schools_present'] = sel_list
-
+        d = {
+            "c_name":c_name,
+            "schools_present":sel_list,
+            "school_count":len(sel_list)
+        }
+        print(sel_list)
         ref = db.child("clusters").push(d)
         clust_id = ref['name']
         for school in sel_list:
             db.child('schools').child(school).update({
-            "inCluster":"yes",
+            "cluster":"yes",
             "clust_id":clust_id
             })
         return redirect('/admin/dashboard')
+    return render_template("schools_list.html")
 
 
 @app.route('/home/resource/submit',methods=['POST','GET'])
