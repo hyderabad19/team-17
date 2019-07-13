@@ -31,7 +31,7 @@
                 <ul class="list-unstyled components">
                     
                     <li>
-                        <a style= href="/admin/dashboard">Dashboard</a>
+                        <a href="/admin/dashboard">Dashboard</a>
                     </li>
                     
                     <li>
@@ -173,13 +173,13 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <script >
     let ctx = document.getElementById('myChart').getContext('2d');
-let labels = ['1', '2'];
+let labels = ['Utilised', 'idle'];
 let colorHex = ['#FB3640', '#EFCA08'];
 let myChart = new Chart(ctx, {
   type: 'pie',
   data: {
     datasets: [{
-      data: [30, 10],
+      data: [50, 50],
       backgroundColor: colorHex
     }],
     labels: labels
