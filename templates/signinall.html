@@ -149,7 +149,7 @@ Password  :
 </div>
 <div>
 
-<input type="submit" name="signin" value="Login">
+
 
 <br><br>
 </div>
@@ -158,7 +158,7 @@ Password  :
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="submit" value="reglm" class="btn btn-primary">Sign In</button>
       </div>
     </div>
   </div>
@@ -192,7 +192,7 @@ Password  :
 </div>
 <div>
 
-<input type="submit" name="signin" value="Login">
+
 
 <br><br>
 </div>
@@ -201,7 +201,7 @@ Password  :
       
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="submit" value="reglm" class="btn btn-primary">Sign In</button>
       </div>
     </div>
   </div>
@@ -224,17 +224,10 @@ Password  :
       <div class="modal-body">
         <form action="/register" method="post" >
   <div class="form-group">
-School Name :
+ Name :
 <input type="text" name="sname" required class="form-control input-sm" ><br>
 </div>
-<div class="form-group">
-Principal Name  :
-<input type="text" name="pname" required class="form-control input-sm" ><br>
-</div>
-<div class="form-group">
-Incharge Name :
-<input type="text" name="iname" required class="form-control input-sm" ><br>
-</div>
+
 <div class="form-group">
 Mobile number :
 <input type="text" name="number" required class="form-control input-sm" ><br>
@@ -244,23 +237,22 @@ Email :
 <input type="text" name="email" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-  
-Address :
-<input type="text" name="text" required class="form-control input-sm" ><br>
+Password :
+<input type="text" name="pass" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Pincode :
-<input type="text" name="email" required class="form-control input-sm" ><br>
+Re enter Password :
+<input type="text" name="rpass" required class="form-control input-sm" ><br>
 </div>
-Password  :
-<input type="password" name="pass" required class="form-control input-sm" ><br>
-</div>
+
+
+
 
 
 
 <div>
 
-<input type="submit" name="signup" value="signup">
+
 
 <br><br>
 </div>
@@ -269,7 +261,7 @@ Password  :
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" name="submit" value="reglm" class="btn btn-primary">Sign Up</button>
       </div>
     </div>
   </div>

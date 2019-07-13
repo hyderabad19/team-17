@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<title></title>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<style >
+ .navbar-logo
+  {
+  
+  color:white;
+  
+  }
+</style>
+<body>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/register" method="post" >
+	<div class="form-group">
+School Name	:
+<input type="text" name="sname" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Principal Name	:
+<input type="text" name="pname" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Incharge Name	:
+<input type="text" name="iname" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Mobile number	:
+<input type="text" name="number" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Email	:
+<input type="text" name="email" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+	<div class="form-group">
+Address	:
+<input type="text" name="text" required class="form-control input-sm" ><br>
+</div>
+<div class="form-group">
+Pincode	:
+<input type="text" name="email" required class="form-control input-sm" ><br>
+</div>
+Password	:
+<input type="password" name="pass" required class="form-control input-sm" ><br>
+</div>
+
+
+
+<div>
+
+<input type="submit" name="signup" value="signup">
+
+<br><br>
+</div>
+
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html> 
