@@ -8,20 +8,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
-             body {
- background-image: url("https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg");
-        background-repeat: no-repeat;
+            body {
+              background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      rgba(128, 128, 128, 0.65), 
+      rgba(128, 128, 128, 0.65)
+    ),
+    /* bottom, image */
+    url("https://live.staticflickr.com/94/250121794_5cff6693da_b.jpg");
+    background-repeat: no-repeat;
         background-size: cover;
-
 }
 
-
-    div {
-opacity: 0.99;
-
-filter: alpha(opacity=99); /* For IE8 and earlier */
-
-}
     .column {
   float: left;
   width: 50%;
@@ -42,76 +41,64 @@ filter: alpha(opacity=99); /* For IE8 and earlier */
         <td>
     <img src="https://loopeducation.weebly.com/uploads/1/0/8/8/108804851/loop-12.jpg"/>
            </td>
-        <td><h2>Add resources</h2>
+        <td><h2 style="font-weight: 500;text-transform:uppercase">Welcome, {{school.name}}</h2>
         </td>
     </tr>
 </table>
 
 <hr>
     <div class="row" style="background: transparent;">
-        <div class="col-" style="background: transparent;">
-            <ul class="list-group">
-
-              {% for reso in res %}
-
+        {% if res %}
+        <div class="col-4" style="background: transparent;height: 20%;overflow-y: auto;overflow-x: hidden">
+            <ul class="list-group" style="height: 20%;overflow-y: auto;overflow-x: hidden">
+          {% for r in res %}
   <li class="list-group-item">
 
-<div class="card bg-light mb-3" style="width: 18rem; background-color: transparent;" >
-  <div class="card-body" style="padding-top: 50px;padding-bottom: 59px ;background-color: transparent;" >
-    <h5 class="card-title">Resource 1</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text" >Description</p>
-
-<div class="card" style="width: 18rem;" >
-  <div class="card-body" style="padding-top: 50px;padding-bottom: 59px " >
-    <h5 class="card-title"> {{reso.name}} </h5>
-    <h6 class="card-subtitle mb-2 text-muted"> {{reso.category}} </h6>
-    <p class="card-text"> {{reso.desp}} </p>
-    {% if reso.avail is True %}
-
-      <button type="button" class="btn btn-success">Resource available</button>
-    {% endif %}
-    {% if resmo.avail is False %}
-      <button type="button" class="btn btn-danger">Resource Unavailable</button>
-    {% endif %}
-    {% if reso.verified is False %}
-      <button type="button" class="btn btn-default">Not Verified</button>
-    {% endif %}  
-      <br>
-
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title" style="font-weight: 500;text-transform:uppercase"> {{r.name}} </h5>
+        <h6 class="card-subtitle mb-2 text-muted"> {{r.category}} </h6>
+        <p class="card-text"> {{r.desp}} </p>
+        {% if r.verified %}
+        {% if r.avail %}
+        <a href="#" class="btn btn-outline-success btn-sm">Available</a>
+        {% else %}
+        <a href="#" class="btn btn-outline-danger btn-sm">Booked</a>
+        {% endif %}
+        {% endif %}
+        {% if not r.verified %}
+        <a href="#" class="btn btn-outline-dark btn-sm">Unverified</a>
+        {% endif %}
+      </div>
+    </div>
   </li>
-      {% endfor %}
+    {% endfor %}
     </ul>
 
         </div>
+        {% endif %}
         <!--&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-->
         <div class="col" style="background: transparent;">
-            <button type="button" class="btn btn-primary btn-lg btn-block" >Add Resource</button>
-<button type="button" class="btn btn-primary btn-lg btn-block">Request Resource</button>
+            <a href="/home/resource" class="btn btn-success btn-lg btn-block" > + Add Resource</a>
+<a class="btn btn-primary btn-lg btn-block">Request Resource</a>
                     <ul class="list-group">
                     </div>
                     <div class="col-" style="background: transparent;">
   <li class="list-group-item">
 <div class="card bg-light mb-3" style="width: 18rem; " >
   <div class="card-body" >
-    <h5 class="card-title">Resource 1</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">School Name</p>
-    <p class="card-text">Principal Name</p>
-      <p class="card-text">Incharge Name</p>
-      <p class="card-text">Mobile number</p>
-      <p class="card-text">Email</p>
-      <p class="card-text">Address</p>
-      <p class="card-text">Pincode</p>
-      <p class="card-text">Password</p>
+    <h5 class="card-title" style="text-transform:uppercase">{{school.name}}</h5>
+    <p class="card-text">Principal Name : {{school.principle}} </p>
+      <p class="card-text">Incharge Name : {{school.incharge}}</p>
+      <p class="card-text">Mobile number : +91-{{school.number}}</p>
+      <p class="card-text">Email : {{school.email}}</p>
+      <p class="card-text">Address : {{school.address}} </p>
+      <p class="card-text">Pincode : {{school.pincode}}</p>
    
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reg">
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reg">
   Edit details
-</button>
+</button> -->
+<a href="/logout_stu" class="btn btn-danger">Logout</a>
   </div>
 </div>
 

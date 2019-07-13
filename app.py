@@ -57,8 +57,9 @@ def signins_ch():
 
         user = auth.sign_in_with_email_and_password(email,password)
         session['s_uid'] = user['localId']
+        print(session['s_uid'])
+    return redirect('/home/dashboard')
 
-    return "success"
         
 @app.route("/signin-lm",methods = ['POST','GET'])
 def signin_lm():
@@ -185,11 +186,21 @@ def selectschools():
         return redirect('/admin/dashboard')
     return render_template("schools_list.html")
 
+@app.route('/logout')
+def signOut():
+    session.pop('l_uid')
+    return redirect('/')
 
-@app.route('/home/resource/submit',methods=['POST','GET'])
+@app.route('/logout_stu')
+def signOut2():
+    session.pop('s_uid')
+    return redirect('/')
+
+@app.route('/home/resource/',methods=['POST','GET'])
 def add_resource():
     if request.method == 'POST':
         formdata = request.form
+        print(formdata)
         name = formdata['r_name']
         desp = formdata['description']
         capacity = formdata['capacity']
@@ -197,8 +208,7 @@ def add_resource():
         if 's_uid' in session:
             uid = session['s_uid']
             avail = True
-            ref = db.child('schools').child(uid).child('resources').child().push()
-            ref.set({
+            ref = db.child('schools').child(uid).child('resources').child().push({
                 "name":name,
                 "desp":desp,
                 "capacity":capacity,
@@ -206,27 +216,29 @@ def add_resource():
                 "avail":avail,
                 "verified":False
             })
+            print(ref['name'])
             db.child('loopman').child('Q7F9y3WfP4VONOlNoLYTzJuHjSw2').child('requests').push({
                 "sch_uid":session['s_uid'],
                 "res_id":ref['name']
             })
-        else:
-            return redirect('/landing')
-        return redirect('/home/resource')
+            return redirect('/home/resource')
     elif request.method == 'GET':
         return render_template('resource_add.html')
 
 
-@app.route('/home/resource')
+@app.route('/home/dashboard')
 def show_resource():
     #list of resources
     if 's_uid' in session:
-        resources = db.child('schools').child(session['s_uid']).get().val()
+        school_data = db.child('schools').child(session['s_uid']).get().val()
+        resources = db.child('schools').child(session['s_uid']).child('resources').get().val()
         res = []
-        for i in resources.values():
-            m = i.values()
-            res.append(m)
-        return render_template('school_dashboard.html',res = res)
+        if resources != None:
+            for i in resources.values():
+                res.append(i)
+            print(res)
+            return render_template('school_dashboard.html',school=school_data,res=res)
+        return render_template('school_dashboard.html',school = school_data)
     else:
         return redirect('/landing')
     return render_template('school_dashboard.html')
