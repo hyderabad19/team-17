@@ -13,7 +13,7 @@ db = firebase.database()
 
 app = Flask("__main__")
 
-
+app.config['SECRET_KEY'] = 'loopedu'
 
 @app.route("/",methods = ['POST','GET'])
 def home():
@@ -66,12 +66,13 @@ def signin_lm():
             email = request.form['email']
             password = request.form['password']
             user = auth.sign_in_with_email_and_password(email,password)
-            print(user)
             session['l_uid'] = user['localId']
+            print(session['l_uid'])
             return redirect('/admin/dashboard')
 
     
         except:
+            print('login error')
             return render_template("signinall.html")
 
 @app.route("/reg-school",methods=["POST","GET"])
@@ -113,7 +114,8 @@ def loopdash():
 
 @app.route("/admin/dashboard", methods=['POST', 'GET'])
 def lpdashboard():
-    return render_template("loopdash.html")
+    if request.method == 'GET':
+        return render_template("loopdash.html")
 
 @app.route("/admin/verify_resources")
 def verifyresources():
