@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <!--jQuery library--> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Latest compiled and minified JavaScript--> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loop Foundation</title>
+  <style>
+            body {
+ background-image: url("https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+
+}
+    div {
+
+opacity: 0.99;
+
+filter: alpha(opacity=99); /* For IE8 and earlier */
+
+}
+
+ .navbar-logo
+  {
+  
+  color:white;
+  
+  }
+</style>
+
+</head>
+<body>
+  <div>
+    <nav   class="navbar navbar-inverse navbar-fixed-top">
+        
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-logo" href="index.html"><b>L O O P F O U N D A T I O N</b><br>      Hyderabad</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+              <li><a href="home.html "><span class="glyphicon glyphicon-home"></span><b>Home</b></a></li>
+            <li><a href="index.html"><b> About us</b></a></li>
+                        <li><a href="/registerall "></span><b>Registration</b></a></li>
+                        
+            <li><a href="/login"><b>Login</b></a></li>
+            <li><a href="patners.html"><b>Partners</b></a></li>
+            
+            <li><a href="team.html"><b>Team</b></a></li>
+            <li><a href="contact.html"><span class="glyphicon glyphicon-earphone"></span><b>Contact us</b></a></li>
+                    </ul>
+        </div>
+      </div>
+    </nav>
+    </div>
+  
+
+
+
+<br><br><br>
+<div id="contain">
+  <div class="row">
+  <div class="col-xs-6 col-xs-offset-4" style="padding-right:180px;">
+  <div class="panel panel-primary" >
+  <div class="panel-heading" >
+                            <center><h4 >Enter date and time </h4></center>
+                        </div>
+            <div class="panel-body">
+
+
+</div>
+<center>
+  
+<form action="/register" method="post" name="form">
+  <div class="form-group">
+From :
+<input type="datetime-local" name="ftime">
+</div>
+<div class="form-group">
+  To  :  
+<input type="datetime-local" name="ttime">
+</div>
+
+<button type="button" class="btn btn-primary" onclick="on Myfunc()">
+  BOOK
+</button>
+
+		  <ul class="list-group">
+
+        
+  <li class="list-group-item">
+<div class="card" style="width: 18rem;" >
+  <div class="card-body">
+  	  <h5 class="card-title">  </h5>
+    <h6 class="card-subtitle mb-2 text-muted">  </h6>
+    <p class="card-text">  </p>
+    
+    </div>
+</div>
+  </li>
+     
+    </ul>
+
+</body>
+</html> 
