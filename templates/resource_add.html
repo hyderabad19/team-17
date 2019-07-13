@@ -51,7 +51,20 @@ function fill_form()
 
   return true;
 }</script>
+<style type="text/css">
+               body {
+ background-image: url("https://cdn.pixabay.com/photo/2017/07/01/19/48/background-2462431_960_720.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
 
+}
+div {
+opacity: 0.95;
+
+filter: alpha(opacity=99); /* For IE8 and earlier */
+
+}
+</style>
 </head>
 <body>
 <div>
@@ -95,10 +108,10 @@ function fill_form()
 
 <hr>
 <form name="ResAdd" onsubmit="return fill_form()">
-        Resource Name: <input type="text" class="form-control" placeholder="Enter Resource Name" name="r_name">
+        <b>Resource Name:</b> <input type="text" class="form-control" placeholder="Enter Resource Name" name="r_name">
 
   <div class="form-group">
-    Category:
+    <b>Category:</b>
   <select class="form-control" id="sel1" name="categ">
     <option>Playground</option>
     <option>Library</option>
@@ -109,8 +122,8 @@ function fill_form()
 
 
 
-        Description: <textarea class="form-control" rows="3" name="description"></textarea>
-        Capacity: <input type="text" class="form-control" placeholder="Enter Capacity" name="capacity">
+        <b>Description:</b> <textarea class="form-control" rows="3" name="description"></textarea>
+        <b>Capacity:</b> <input type="text" class="form-control" placeholder="Enter Capacity" name="capacity">
       <input type="submit" class="btn btn-success" value="Submit">
   </div>
 </form>
