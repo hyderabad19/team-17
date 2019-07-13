@@ -17,5 +17,5 @@ def distpy(la1,la2,lng1,lng2):
     c = 2 * atan2(sqrt(a), sqrt(1 - a))
 
     distance = R * c
-
+    print(distance)
     return distance

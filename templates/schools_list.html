@@ -10,7 +10,7 @@
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
     </head>
     <body>
 
@@ -25,11 +25,11 @@
 
                 <ul class="list-unstyled components">
                    <li>
-                        <a href="analytics.html">Home</a>
+                        <a href="/admin/dashboard">Home</a>
                     </li>
                     
                     <li>
-                        <a href="clusterform.html">Create Cluster</a>
+                        <a href="/admin/cluster">Create Cluster</a>
                     </li>
                     <li>
                         <a href="verify_resources.html">Verify Resources</a>
@@ -65,14 +65,12 @@
                 <div class="container" class="custom-control custom-checkbox">
 				
 				
-				<form class="form-inline" action="/admin/cluster/schools_list">
-				<select name="listofschools" multiple>
+				<form class="form-inline" method="POST" action="/admin/cluster/schools_list">
+				<select style="width:30%" name="listofschools" multiple>
 				{% for i in scls %}
 				
 				
-  <option value="{{i.uid}}">{{i.schoolname}}</option>
-  <option value="{{i.uid}}">{{i.schoolname}}</option>
-  <option value="{{i.uid}}">{{i.schoolname}}</option>
+  <option value="{{i.uid}}">{{i.name}}</option>
 
 		
 				{% endfor %}
@@ -80,10 +78,10 @@
 				<br /><br />
 				<div class="form-group">
       <label for="email">Cluster Name:</label>
-      <input type="text" class="form-control" name="lat">
+      <input type="text" class="form-control" name="cname">
     </div><br /><br />
 	<div class="form-group">
-	<input type="submit" value="Create"></div>
+	<input class="btn btn-success" type="submit" name="Create"></div>
 				</form>
 				
 				</div>
