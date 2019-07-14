@@ -6,7 +6,7 @@ c1 = Config1()
 firebase = pyrebase.initialize_app(c1.giveConfig())
 
 db = firebase.database()
-
+'''
 cluster = db.child("clusters").shallow().get()
 clus_key = cluster.val()
 
@@ -25,8 +25,30 @@ for i in keyList:
         names.append(x['name'])
     li1.append(names)
 lis.append(li1)
-print(lis)
+'''
+r_ids = db.child("schools").child("NdZ8jxVK2pSn21zeuK8ECusHoVg2").child("resources").get().val()
 
+r_ids = list(r_ids)
+
+'''db.child("scheduling").child("resource").child().child(r_ids[0]).push({
+    "rid": r_ids[0],
+    "start": "1",
+    "end": "3"
+    }) '''
+
+
+keys = list(db.child("schools").child("NdZ8jxVK2pSn21zeuK8ECusHoVg2").child("resources").shallow().get().val())
+data = []
+l = 0
+dat = db.child("scheduling").child("resource").child().child(keys[0]).get().val()
+print(dat)
+'''for i in keys:
+    if l==1:
+        dat = db.child("scheduling").child("resource").child(i).get().val()
+        data.append(dat['end'])
+    l+=1
+print(data)
+'''
 
 
 
