@@ -263,13 +263,13 @@ def book_slot():
     if request.method() == 'POST':
         fday = request.form['fday']
         lday = request.form['lday']
-        
+
         fnum = week[fday]
         lnum = week[lday]
 
-        
 
-        
+
+
     return render_template("book_slot.html")
 @app.route("/admin/verify_resources/", methods=['POST','GET'])
 def verify_r():
@@ -313,7 +313,7 @@ def request_resource():
     sid = sessin['s_uid']
 
 
-@app.route("schools/request_resource/",method=['POST','GET'])
+@app.route("home/dashboard/request_resource",method=['POST','GET'])
 def resource_booking():
     scid = session['s_uid']
     it1 = db.child("schools").child(scid).child('clust_id').get().val()
@@ -339,8 +339,34 @@ def resource_booking():
                     d['res_det'] = d1
             ress.append(d)
         return render_template("res_req_list.html", d = d)
-@app.route("schools/res_req_list/", method=['POST', 'GET'])
-def time():
-    return render_template("")
+@app.route("home/dashboard/<i>", method=['POST', 'GET'])
+def time(i):
+
+    if request.method == 'POST':
+        flag = 0
+        startt = request.form['ftime']
+        endt = request.form['ttime']
+        q = db.child("scheduling").child("resource").child("NdZ8jxVK2pSn21zeuK8ECusHoVg2").shallow().get()
+        for i in q:
+            jj = db.child("scheduling").child("resource").child("NdZ8jxVK2pSn21zeuK8ECusHoVg2").child(i).shallow().get().val()
+            jj = list(jj)
+            jjj = db.child("scheduling").child("resource").child("NdZ8jxVK2pSn21zeuK8ECusHoVg2").child(i).child(jj[0]).get().val()
+            if jjj['rid'] == i:
+                flag = 1
+                startio = jjj['start']
+                endio = jjj['end']
+                break
+        if flag == 1:
+            if (startt > startio && startt < endio) or (endt > startio && endt < endio):
+                redirect("home/dashboard/request_resource")
+        if flag == 0:
+            db.child("scheduling").child("resource").child("NdZ8jxVK2pSn21zeuK8ECusHoVg2").child().push({
+            "end":endt,
+            "start":startt,
+            "rid":i
+            })
+            c_user = db.child("schools").child(session['s_uid']).get().val()
+            sendM('Booking Confirmed!','Hey '+c_user['name']+'! You have sucessfully booked your slot for your resource request!',[c_user['email']])
+    return render_template("book_slot.html")
 if __name__ == "__main__":
     app.run(debug=True)
