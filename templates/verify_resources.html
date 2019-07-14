@@ -25,20 +25,23 @@
 
                 <ul class="list-unstyled components">
                    <li>
-                        <a href="/admin/dashboard">Home</a>
+                        <a href="/admin/dashboard">Daskboard</a>
                     </li>
 
                     <li>
-                        <a href="/admin/cluster/">Create Cluster</a>
+                        <a href="/admin/cluster">Create Cluster</a>
                     </li>
                     <li>
-                        <a href="/admin/verify_resources/">Verify Resources</a>
+                        <a href="/admin/verify_resources">Verify Resources</a>
                     </li>
 					<li>
-					<button type="button" class="btn btn-default">Register School</button>
-					</li>
+          
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#school_reg">
+                                  Register School
+                                </button>
+                              </li>
 					<li>
-						<a href="localhost:5000/">Logout</a>
+						<a href="/">Logout</a>
 					</li>
                 </ul>
 
@@ -83,6 +86,79 @@
                 </div>
         </div>
 
+        <div class="modal fade" id="school_reg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Scool Registration</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/reg-school" method="post" >
+                        <div class="form-group">
+                      School Name :
+                      <input type="text" name="sname" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Principal Name  :
+                      <input type="text" name="pname" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Incharge Name :
+                      <input type="text" name="iname" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Mobile number :
+                      <input type="number" name="number" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Email :
+                      <input type="email" name="email" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                          Latitude :
+                          <input type="text" name="lat" required class="form-control input-sm" ><br>
+                          </div>
+                       <div class="form-group">
+                          Longitude :
+                              <input type="text" name="lon" required class="form-control input-sm" ><br>
+                              </div>
+                      <div class="form-group">
+                        <div class="form-group">
+                      Address :
+                      <input type="textarea" name="address" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Pincode :
+                      <input type="number" name="pin" required class="form-control input-sm" ><br>
+                      </div>
+                      Password  :
+                      <input type="password" name="password" required class="form-control input-sm" ><br>
+                      </div>
+                      
+                      <div>
+                        <input type="hidden" name="cluster" value="No">
+                      </div>
+                      
+                      
+                      <div>
+                      
+                      <br><br>
+                      </div>
+              
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="signup" >Sign Up</button>
+                      </div>
+                      
+                      </form>
+                    </div>
+                   
+                  </div>
+                </div>
+            </div>  
 
 
 
