@@ -189,7 +189,7 @@ a.article, a.article:hover {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Validate Resources</title>
+        <title>Verifying Resources</title>
 
          <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -249,13 +249,23 @@ a.article, a.article:hover {
                     </div>
                 </nav>
 <div class="container">
+    <h3>Verifying Resources</h3>
     <ul class="list-group" style="width: 60%">
             {% for m in f %}
         <li class="list-group-item">
-
-               <b> School Name</b> : {{ m.data.sname }} | <b>Resource Name</b> : {{ m.data.resname }} &nbsp;
-                <a class="btn btn-outline-success btn-sm" style="background: rgb(17, 156, 17)" href="/admin/verify_resources/accept/{{m.resid}}">Accept</a>
-                <a class="btn btn-outline-danger btn-sm" style="background: rgb(221, 7, 7)" href="/admin/verify_resources/decline/{{m.resid}}">Decline</a>
+                <div class="card" style="width: 18rem;">
+                        {% if m.data.url %}
+                        <img width=100 height="100" src="{{m.data.url}}" class="card-img-top" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                          <h5 class="card-title"><b> School Name</b> : {{ m.data.sname }} </h5>
+                          <p class="card-text">  <b>Resource Name</b> : {{ m.data.resname }}</p>
+                          <a class="btn btn-outline-success btn-sm" style="background: rgb(17, 156, 17)" href="/admin/verify_resources/accept/{{m.resid}}">Accept</a>
+                          <a class="btn btn-outline-danger btn-sm" style="background: rgb(221, 7, 7)" href="/admin/verify_resources/decline/{{m.resid}}">Decline</a>
+                        </div>
+                      </div>
+               
+   
         </li>
         {% endfor %}
         <h3 style="color:black"> {{text}} </h3>

@@ -135,7 +135,7 @@ def lpdashboard():
                 x = db.child("schools").child(j).get().val()
                 names.append(x['name'])
             li1.append(names)
-        lis.append(li1)
+            lis.append(li1)
         return render_template("loopdash.html",clus = lis)
 
 
@@ -260,7 +260,7 @@ def book_slot():
         'sunday': 7}
 
 
-    if request.method() == 'POST':
+    if request.method == 'POST':
         fday = request.form['fday']
         lday = request.form['lday']
         
@@ -280,7 +280,10 @@ def verify_r():
             v = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).get()
             h = db.child("schools").child(v.val()['sch_uid']).get()
             j = db.child('schools').child(v.val()['sch_uid']).child("resources").child(v.val()['res_id']).get()
-            f.append({'resid':i,'data': {'sname':h.val()['name'], 'resname':j.val()['name']}})
+            if 'url' in j.val():
+                f.append({'resid':i,'data': {'sname':h.val()['name'], 'resname':j.val()['name'],'url':j.val()['url']}})
+            else:
+                f.append({'resid':i,'data': {'sname':h.val()['name'], 'resname':j.val()['name']}})
         return render_template("verify_resources.html", f = f,len = len(f))
     else:
         return render_template("verify_resources.html",text="No requests!")
