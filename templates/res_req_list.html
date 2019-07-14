@@ -1,7 +1,8 @@
 
-{% for i, j in d %}
-  <form action="res_req_list.html" method="POST">
-  {{ i.sid }} {{ j['res_det']['resname'] }} {{ j['res_det']['rescat'] }}
-  <a href="/schools/res_req_list/{{ j['res_det']['resid'] }}"></a>
+{% for i in d %}
+  <form action="res_req_list.html" action="/home/dashboard/{{ i.res_det.resid }}" method="POST">
+    {{ i.res_det.resname }} | {{ i.res_det.rescat }}
+    <br>
+  <a href="/home/dashboard/{{ i.res_det.resid }}">
   </form>
 {% endfor %}

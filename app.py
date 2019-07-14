@@ -311,12 +311,9 @@ def decline(i):
         sendM('Hey '+school['name'] +'! You\'re resource has been rejected :(',resource['name'] + ' has been rejected by the Loop Manager. Contact them to investigate into this',[school['email']])
         return redirect("/admin/verify_resources")
 
-@app.route("",method=['POST', 'GET'])
-def request_resource():
-    sid = sessin['s_uid']
 
 
-@app.route("home/dashboard/request_resource",method=['POST','GET'])
+@app.route("/home/dashboard/request_resource",methods=['POST','GET'])
 def resource_booking():
     scid = session['s_uid']
     it1 = db.child("schools").child(scid).child('clust_id').get().val()
@@ -329,20 +326,24 @@ def resource_booking():
         if it3:
             it4 = db.child("schools").child(i).child("resources").shallow().get()
             it5 = list(it4.val())
+            d1 = dict()
             for j in it5:
-                it5 = db.child("schools").child(i).child("resources").child(j)
-                it6 = it5.child('avail').get()
-                if it5.val() == True:
+                it5 = db.child("schools").child(i).child("resources").child(j).get()
+                ref = db.child("schools").child(i).child("resources").child(j)
+                it6 = ref.child('avail').get()
+                if it5.val()['avail'] == True:
                     if flag == 0:
                         d['sid'] = i
                         flag == 1
-                        d1['resname'] = it5['name']
-				        d1['rescat'] = it5['category']
-				        d1['resid'] = j
+                        d1['resname']=it5.val()['name']
+                        d1['rescat']=it5.val()['category']
+                        d1['resid'] = j
+                        print(j)
                     d['res_det'] = d1
             ress.append(d)
-        return render_template("res_req_list.html", d = d)
-@app.route("home/dashboard/<i>", method=['POST', 'GET'])
+    print(ress)
+    return render_template("res_req_list.html", d = ress)
+@app.route("/home/dashboard/<i>", methods=['POST', 'GET'])
 def time(i):
 
     if request.method == 'POST':
@@ -360,7 +361,7 @@ def time(i):
                 endio = jjj['end']
                 break
         if flag == 1:
-            if (startt > startio && startt < endio) or (endt > startio && endt < endio):
+            if (startt > startio and startt < endio) or (endt > startio and endt < endio):
                 redirect("home/dashboard/request_resource")
         if flag == 0:
             db.child("scheduling").child("resource").child("NdZ8jxVK2pSn21zeuK8ECusHoVg2").child().push({
@@ -370,6 +371,6 @@ def time(i):
             })
             c_user = db.child("schools").child(session['s_uid']).get().val()
             sendM('Booking Confirmed!','Hey '+c_user['name']+'! You have sucessfully booked your slot for your resource request!',[c_user['email']])
-    return render_template("book_slot.html")
+    return render_template("book_slot.html",i = i)
 if __name__ == "__main__":
     app.run(debug=True)
