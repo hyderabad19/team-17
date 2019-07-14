@@ -3,7 +3,7 @@ from flask import *
 from config import Config1
 from formula import distpy
 import geopy.distance
-
+from mailsender1 import sendM
 c1 = Config1()
 
 firebase = pyrebase.initialize_app(c1.giveConfig())
@@ -11,6 +11,8 @@ firebase = pyrebase.initialize_app(c1.giveConfig())
 auth = firebase.auth()
 
 db = firebase.database()
+
+store = firebase.storage()
 
 app = Flask("__main__")
 
@@ -92,7 +94,7 @@ def reg_school():
         lat = request.form['lat']
         lon = request.form['lon']
         user = auth.create_user_with_email_and_password(email,password)
-        u_idx = user['loaclId']
+        u_idx = user['localId']
         print(u_idx)
 
         db.child("schools").child(u_idx).child().set({
@@ -109,7 +111,7 @@ def reg_school():
             "u_id": u_idx
         })
         session['s_uid'] = user['localId']
-        return render_template("loopdash.html")
+        return redirect('/admin/dashboard')
 
     return render_template("schoolRegistration.html")
 
@@ -135,10 +137,6 @@ def lpdashboard():
             li1.append(names)
         lis.append(li1)
         return render_template("loopdash.html",clus = lis)
-
-@app.route("/admin/verify_resources")
-def verifyresources():
-    return render_template("verify_resources.html")
 
 
 @app.route("/admin/cluster", methods=['POST','GET'])
@@ -205,22 +203,29 @@ def add_resource():
         desp = formdata['description']
         capacity = formdata['capacity']
         categ = formdata['categ']
+        f = request.files['r_image']
+        fname = f.filename
         if 's_uid' in session:
             uid = session['s_uid']
             avail = True
+            fire_ref = store.child(u'resources').child(fname).put(f)
+            link = store.child(u'resources').child(fname).get_url(None)
             ref = db.child('schools').child(uid).child('resources').child().push({
                 "name":name,
                 "desp":desp,
                 "capacity":capacity,
                 "category":categ,
                 "avail":avail,
-                "verified":False
+                "verified":False,
+                "url":link
             })
             print(ref['name'])
             db.child('loopman').child('Q7F9y3WfP4VONOlNoLYTzJuHjSw2').child('requests').push({
                 "sch_uid":session['s_uid'],
                 "res_id":ref['name']
             })
+            school = db.child("schools").child(uid).get().val()
+            sendM('Hey Loop Manager! You\'ve got a resource request!',school['name'] + ' have submitted a request for their resource '+ name + '<br><a href="localhost:5000/signin" >Verify Now!</a>',['loopedu123@gmail.com'])
             return redirect('/home/resource')
     elif request.method == 'GET':
         return render_template('resource_add.html')
@@ -243,7 +248,29 @@ def show_resource():
         return redirect('/landing')
     return render_template('school_dashboard.html')
 
+@app.route('/home/dashboard/book_slot',methods=['GET','POST'])
+def book_slot():
+    week = {
+        'monday':1,
+        'tuesday':2,
+        'wednesday':3,
+        'thursday':4,
+        'friday': 5,
+        'saturday': 6,
+        'sunday': 7}
 
+
+    if request.method() == 'POST':
+        fday = request.form['fday']
+        lday = request.form['lday']
+        
+        fnum = week[fday]
+        lnum = week[lday]
+
+        
+
+        
+    return render_template("book_slot.html")
 @app.route("/admin/verify_resources/", methods=['POST','GET'])
 def verify_r():
     g = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").shallow().get()
@@ -267,6 +294,7 @@ def accept(i):
         db.child("schools").child(re['sch_uid']).child("resources").child(re['res_id']).update({
         "verified":True
         })
+        sendM('Hey '+school['name'] +'! You\'re resource has been verified!',resource['name'] + ' has been verified and can be viewed and booked by other schools in your cluster',[school['email']])
         db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
         return redirect("/admin/verify_resources/")
 
@@ -277,6 +305,7 @@ def decline(i):
         resource = db.child("schools").child(re['sch_uid']).child("resources").child(re['res_id']).get().val()
         school = db.child("schools").child(re['sch_uid']).get().val()
         db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
+        sendM('Hey '+school['name'] +'! You\'re resource has been rejected :(',resource['name'] + ' has been rejected by the Loop Manager. Contact them to investigate into this',[school['email']])
         return redirect("/admin/verify_resources")
 
 @app.route("",method=['POST', 'GET'])

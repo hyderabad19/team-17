@@ -1,6 +1,190 @@
 <!DOCTYPE html>
 <html>
     <head>
+      <style>
+        .navbar-logo
+  {
+  
+  color:white;
+  
+  }
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+.chart-wrapper {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+.btn-default
+{
+  background: #7386D5;
+  color:linear-gradient(rgb(251,54,64),rgb(239,202,8));
+  border:none;
+}
+background-color: #68889E;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #ad3678;
+    color: #fff;
+    transition: all 0.3s;
+    background-image: linear-gradient(rgb(251,54,64),rgb(239,202,8));
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #963069.;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article, a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+</style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,20 +209,23 @@
 
                 <ul class="list-unstyled components">
                    <li>
-                        <a href="analytics.html">Home</a>
+                        <a href="/admin/dashboard">Daskboard</a>
                     </li>
 
                     <li>
-                        <a href="clusterform.html">Create Cluster</a>
+                        <a href="/admin/cluster">Create Cluster</a>
                     </li>
                     <li>
-                        <a href="verify_resources.html">Verify Resources</a>
+                        <a href="/admin/verify_resources">Verify Resources</a>
                     </li>
 					<li>
-					<button type="button" class="btn btn-default">Register School</button>
-					</li>
+          
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#school_reg">
+                                  Register School
+                                </button>
+                              </li>
 					<li>
-						<a href="localhost:5000/">Logout</a>
+						<a href="/">Logout</a>
 					</li>
                 </ul>
 
@@ -66,9 +253,9 @@
             {% for m in f %}
         <li class="list-group-item">
 
-                School Name : {{ m.data.sname }} | Resource Name : {{ m.data.resname }}
-                <a class="btn btn-outline-success btm-sm" href="/admin/verify_resources/accept/{{m.resid}}">Accept</a>
-                <a class="btn btn-outline-danger btn-sm" href="/admin/verify_resources/decline/{{m.resid}}">Decline</a>
+               <b> School Name</b> : {{ m.data.sname }} | <b>Resource Name</b> : {{ m.data.resname }} &nbsp;
+                <a class="btn btn-outline-success btn-sm" style="background: rgb(17, 156, 17)" href="/admin/verify_resources/accept/{{m.resid}}">Accept</a>
+                <a class="btn btn-outline-danger btn-sm" style="background: rgb(221, 7, 7)" href="/admin/verify_resources/decline/{{m.resid}}">Decline</a>
         </li>
         {% endfor %}
         <h3 style="color:black"> {{text}} </h3>
@@ -83,6 +270,79 @@
                 </div>
         </div>
 
+        <div class="modal fade" id="school_reg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Scool Registration</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/reg-school" method="post" >
+                        <div class="form-group">
+                      School Name :
+                      <input type="text" name="sname" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Principal Name  :
+                      <input type="text" name="pname" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Incharge Name :
+                      <input type="text" name="iname" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Mobile number :
+                      <input type="number" name="number" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Email :
+                      <input type="email" name="email" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                          Latitude :
+                          <input type="text" name="lat" required class="form-control input-sm" ><br>
+                          </div>
+                       <div class="form-group">
+                          Longitude :
+                              <input type="text" name="lon" required class="form-control input-sm" ><br>
+                              </div>
+                      <div class="form-group">
+                        <div class="form-group">
+                      Address :
+                      <input type="textarea" name="address" required class="form-control input-sm" ><br>
+                      </div>
+                      <div class="form-group">
+                      Pincode :
+                      <input type="number" name="pin" required class="form-control input-sm" ><br>
+                      </div>
+                      Password  :
+                      <input type="password" name="password" required class="form-control input-sm" ><br>
+                      </div>
+                      
+                      <div>
+                        <input type="hidden" name="cluster" value="No">
+                      </div>
+                      
+                      
+                      <div>
+                      
+                      <br><br>
+                      </div>
+              
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="signup" >Sign Up</button>
+                      </div>
+                      
+                      </form>
+                    </div>
+                   
+                  </div>
+                </div>
+            </div>  
 
 
 

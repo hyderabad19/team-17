@@ -13,6 +13,11 @@
 	<title>Loop Foundation</title>
 
 	<style>
+    body{
+background:url("https://www.whatsuplife.in/pune/blog/wp-content/uploads/2018/09/ngo.jpg") no-repeat center;
+overflow:hidden;
+background-repeat: no-repeat;background-size: cover;
+    }
    .navbar-logo
   {
   
@@ -64,7 +69,7 @@
  </style>
 
 </head>
-<body>
+<body >
 
 	<div>
     <nav   class="navbar navbar-inverse navbar-fixed-top">
@@ -76,12 +81,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-logo" href="index.html"><b>L O O P F O U N D A T I O N</b><br>      Hyderabad</a>
+ <a class="navbar-logo" href="index.html"><img src="https://loopeducation.weebly.com/uploads/1/0/8/8/108804851/loop-12.jpg" style="padding-top:10pwidth:20px;height:60px;"><b>&nbsp;&nbsp;L O O P &nbsp;&nbsp; F O U N D A T I O N</b><br>  </a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-					    <li><a href="/ "><span class="glyphicon glyphicon-home"></span><b>Home</b></a></li>
-						<li><a href="index.html"><b> About us</b></a></li>
+					    <li><a href="/"><span class="glyphicon glyphicon-home"></span><b>Home</b></a></li>
+						<li><a href="#about"><b> About us</b></a></li>
                         
                         
 						<li><a href="/signinall"><b>Login</b></a></li>
@@ -102,15 +107,15 @@
 					
 						           <br><br>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ssignin">
-  Sign in as School Incharge
+ <b> Sign in as School Incharge</b>
 </button>
-                        <br><br><br><br>
+                        <br><br>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#msignin">
-  Sign in as Loop Manager
+ <b> Sign in as Loop Manager </b>
 </button>
                         <br><br>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nreg">
-  Not Registered?
+ <b> Not Registered?</b>
 </button>
                         
 
@@ -128,11 +133,11 @@
 
 </div>
 
-<div class="modal fade" id="ssignin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ssignin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign in as School Incharge</h5>
+      <div class="modal-header " style="background-color: blue;color: white">
+        <h5 class="modal-title" id="exampleModalLabel"><b>Sign in as School Incharge</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -141,13 +146,13 @@
         <form  method="POST" action ="/signin-sch" >
           <div class="form-group">
 
-            Email :
+            <b>Email</b> :
             <input type="text" name="email" required class="form-control input-sm" ><br>
         </div>
     
   <div class="form-group">
 
-Password  :
+<b>Password </b> :
 <input type="password" name="password" required class="form-control input-sm" ><br>
 </div>
 <div>
@@ -176,8 +181,8 @@ Password  :
 <div class="modal fade" id="msignin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign in as Loop Manager</h5>
+      <div class="modal-header " style="background-color: blue;color: white">
+        <h5 class="modal-title" id="exampleModalLabel"><b>Sign in as Loop Manager</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -186,13 +191,13 @@ Password  :
         <form  method="post" action = "/signin-lm" >
           <div class="form-group">
 
-Email :
+<b>Email</b> :
 <input type="text" name="email" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
   
 
-Password  :
+<b>Password </b>  :
 <input type="password" name="password" required class="form-control input-sm" ><br>
 </div>
 <div>
@@ -222,8 +227,8 @@ Password  :
 <div class="modal fade" id="nreg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Register as Loop Manager</h5>
+      <div class="modal-header " style="background-color: blue;color: white">
+        <h5 class="modal-title" id="exampleModalLabel"><b>Register as Loop Manager</b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -231,24 +236,24 @@ Password  :
       <div class="modal-body">
         <form action="/register" method="post" >
   <div class="form-group">
- Name :
+<b> Name </b>:
 <input type="text" name="name" required class="form-control input-sm" ><br>
 </div>
 
 <div class="form-group">
-Mobile number :
+<b>Mobile number </b>:
 <input type="text" name="number" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Email :
+<b>Email :</b>
 <input type="text" name="email" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Password :
+<b>Password :</b>
 <input type="password" name="password" required class="form-control input-sm" ><br>
 </div>
 <div class="form-group">
-Re enter Password :
+<b>Re enter Password :</b>
 <input type="password" name="rpass" required class="form-control input-sm" ><br>
 </div>
 <div>

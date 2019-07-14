@@ -56,6 +56,9 @@
 
     <div class="card" style="width: 18rem;">
       <div class="card-body">
+        {% if r.url %}
+          <img src="{{r.url}}" class="card-img-top" alt="...">
+        {% endif %}
         <h5 class="card-title" style="font-weight: 500;text-transform:uppercase"> {{r.name}} </h5>
         <h6 class="card-subtitle mb-2 text-muted"> {{r.category}} </h6>
         <p class="card-text"> {{r.desp}} </p>
@@ -80,7 +83,7 @@
         <!--&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-->
         <div class="col" style="background: transparent;">
             <a href="/home/resource" class="btn btn-success btn-lg btn-block" > + Add Resource</a>
-<a class="btn btn-primary btn-lg btn-block">Request Resource</a>
+<a class="btn btn-primary btn-lg btn-block" href="/home/dashboard/book_slot">Request Resource</a>
                     <ul class="list-group">
                     </div>
                     <div class="col-" style="background: transparent;">
