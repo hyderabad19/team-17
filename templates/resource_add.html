@@ -112,7 +112,7 @@ filter: alpha(opacity=99); /* For IE8 and earlier */
 </center>
 
 <hr>
-<form name="ResAdd" action="{{ url_for('add_resource') }}" method="POST" onsubmit="return fill_form()">
+<form name="ResAdd" action="{{ url_for('add_resource') }}" method="POST" enctype="multipart/form-data" onsubmit="return fill_form()">
         <b>Resource Name:</b> <input type="text" class="form-control" placeholder="Enter Resource Name" name="r_name">
 
   <div class="form-group">
@@ -125,7 +125,7 @@ filter: alpha(opacity=99); /* For IE8 and earlier */
       <option>Part time teachers</option>
   </select>
 
-
+        <input type="file" name="r_image" id="">
 
         <b>Description:</b> <textarea class="form-control" rows="3" name="description"></textarea>
         <b>Capacity:</b> <input type="text" class="form-control" placeholder="Enter Capacity" name="capacity">

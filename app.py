@@ -12,6 +12,8 @@ auth = firebase.auth()
 
 db = firebase.database()
 
+store = firebase.storage()
+
 app = Flask("__main__")
 
 app.config['SECRET_KEY'] = 'loopedu'
@@ -92,7 +94,7 @@ def reg_school():
         lat = request.form['lat']
         lon = request.form['lon']
         user = auth.create_user_with_email_and_password(email,password)
-        u_idx = user['loaclId']
+        u_idx = user['localId']
         print(u_idx)
 
         db.child("schools").child(u_idx).child().set({
@@ -109,7 +111,7 @@ def reg_school():
             "u_id": u_idx
         })
         session['s_uid'] = user['localId']
-        return render_template("loopdash.html")
+        return redirect('/admin/dashboard')
 
     return render_template("schoolRegistration.html")
 
@@ -201,16 +203,21 @@ def add_resource():
         desp = formdata['description']
         capacity = formdata['capacity']
         categ = formdata['categ']
+        f = request.files['r_image']
+        fname = f.filename
         if 's_uid' in session:
             uid = session['s_uid']
             avail = True
+            fire_ref = store.child(u'resources').child(fname).put(f)
+            link = store.child(u'resources').child(fname).get_url(None)
             ref = db.child('schools').child(uid).child('resources').child().push({
                 "name":name,
                 "desp":desp,
                 "capacity":capacity,
                 "category":categ,
                 "avail":avail,
-                "verified":False
+                "verified":False,
+                "url":link
             })
             print(ref['name'])
             db.child('loopman').child('Q7F9y3WfP4VONOlNoLYTzJuHjSw2').child('requests').push({

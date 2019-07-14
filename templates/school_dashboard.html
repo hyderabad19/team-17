@@ -56,6 +56,9 @@
 
     <div class="card" style="width: 18rem;">
       <div class="card-body">
+        {% if r.url %}
+          <img src="{{r.url}}" class="card-img-top" alt="...">
+        {% endif %}
         <h5 class="card-title" style="font-weight: 500;text-transform:uppercase"> {{r.name}} </h5>
         <h6 class="card-subtitle mb-2 text-muted"> {{r.category}} </h6>
         <p class="card-text"> {{r.desp}} </p>
