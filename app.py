@@ -34,7 +34,7 @@ def register():
         number = request.form['number']
         user = auth.create_user_with_email_and_password(email,password)
         #auth.send_email_verification(user['idToken'])
-        
+
         #user = auth.sign_in_with_email_and_password(email,password)
         print(user['localId'])
         session['l_uid'] = user['localId']
@@ -42,7 +42,7 @@ def register():
             "name": name,
             "email": email,
             "number": number
-        
+
         })
         return redirect('/admin/dashboard')
     return render_template("signinall.html")
@@ -51,7 +51,7 @@ def register():
 @app.route("/signin-sch",methods = ['POST','GET'])
 def signins_ch():
     if request.method == 'POST':
-        
+
         email = request.form['email']
         password = request.form['password']
 
@@ -60,7 +60,7 @@ def signins_ch():
         print(session['s_uid'])
     return redirect('/home/dashboard')
 
-        
+
 @app.route("/signin-lm",methods = ['POST','GET'])
 def signin_lm():
     if request.method == 'POST':
@@ -72,7 +72,7 @@ def signin_lm():
             print(session['l_uid'])
             return redirect('/admin/dashboard')
 
-    
+
         except:
             print('login error')
             return render_template("signinall.html")
@@ -279,9 +279,39 @@ def decline(i):
         db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
         return redirect("/admin/verify_resources")
 
+@app.route("",method=['POST', 'GET'])
+def request_resource():
+    sid = sessin['s_uid']
 
 
+@app.route("schools/request_resource/",method=['POST','GET'])
+def resource_booking():
+    scid = session['s_uid']
+    it1 = db.child("schools").child(scid).child('clust_id').get().val()
+    it2 = db.child("clusters").child(it1).child("schools_present").get().val()
+    ress = []
+    for i in it2:
+        flag = 0
+        d = dict()
+        it3 = db.child("schools").child(i).child("resources").get().val()
+        if it3:
+            it4 = db.child("schools").child(i).child("resources").shallow().get()
+            it5 = list(it4.val())
+            for j in it5:
+                it5 = db.child("schools").child(i).child("resources").child(j)
+                it6 = it5.child('avail').get()
+                if it5.val() == True:
+                    if flag == 0:
+                        d['sid'] = i
+                        flag == 1
+                        d1['resname'] = it5['name']
+				        d1['rescat'] = it5['category']
+				        d1['resid'] = j
+                    d['res_det'] = d1
+            ress.append(d)
+        return render_template("res_req_list.html", d = d)
+@app.route("schools/res_req_list/", method=['POST', 'GET'])
+def time():
+    return render_template("")
 if __name__ == "__main__":
     app.run(debug=True)
-
-
