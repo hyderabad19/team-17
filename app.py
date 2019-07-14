@@ -248,7 +248,29 @@ def show_resource():
         return redirect('/landing')
     return render_template('school_dashboard.html')
 
+@app.route('/home/dashboard/book_slot',methods=['GET','POST'])
+def book_slot():
+    week = {
+        'monday':1,
+        'tuesday':2,
+        'wednesday':3,
+        'thursday':4,
+        'friday': 5,
+        'saturday': 6,
+        'sunday': 7}
 
+
+    if request.method() == 'POST':
+        fday = request.form['fday']
+        lday = request.form['lday']
+        
+        fnum = week[fday]
+        lnum = week[lday]
+
+        
+
+        
+    return render_template("book_slot.html")
 @app.route("/admin/verify_resources/", methods=['POST','GET'])
 def verify_r():
     g = db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").shallow().get()
