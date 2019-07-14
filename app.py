@@ -3,7 +3,7 @@ from flask import *
 from config import Config1
 from formula import distpy
 import geopy.distance
-
+from mailsender1 import sendM
 c1 = Config1()
 
 firebase = pyrebase.initialize_app(c1.giveConfig())
@@ -136,10 +136,6 @@ def lpdashboard():
         lis.append(li1)
         return render_template("loopdash.html",clus = lis)
 
-@app.route("/admin/verify_resources")
-def verifyresources():
-    return render_template("verify_resources.html")
-
 
 @app.route("/admin/cluster", methods=['POST','GET'])
 def lpclusterform():
@@ -221,6 +217,8 @@ def add_resource():
                 "sch_uid":session['s_uid'],
                 "res_id":ref['name']
             })
+            school = db.child("schools").child(uid).get().val()
+            sendM('Hey Loop Manager! You\'ve got a resource request!',school['name'] + ' have submitted a request for their resource '+ name + '<br><a href="localhost:5000/signin" >Verify Now!</a>',['loopedu123@gmail.com'])
             return redirect('/home/resource')
     elif request.method == 'GET':
         return render_template('resource_add.html')
@@ -267,6 +265,7 @@ def accept(i):
         db.child("schools").child(re['sch_uid']).child("resources").child(re['res_id']).update({
         "verified":True
         })
+        sendM('Hey '+school['name'] +'! You\'re resource has been verified!',resource['name'] + ' has been verified and can be viewed and booked by other schools in your cluster',[school['email']])
         db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
         return redirect("/admin/verify_resources/")
 
@@ -277,6 +276,7 @@ def decline(i):
         resource = db.child("schools").child(re['sch_uid']).child("resources").child(re['res_id']).get().val()
         school = db.child("schools").child(re['sch_uid']).get().val()
         db.child("loopman").child("Q7F9y3WfP4VONOlNoLYTzJuHjSw2").child("requests").child(i).remove()
+        sendM('Hey '+school['name'] +'! You\'re resource has been rejected :(',resource['name'] + ' has been rejected by the Loop Manager. Contact them to investigate into this',[school['email']])
         return redirect("/admin/verify_resources")
 
 

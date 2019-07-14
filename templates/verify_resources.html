@@ -25,14 +25,14 @@
 
                 <ul class="list-unstyled components">
                    <li>
-                        <a href="analytics.html">Home</a>
+                        <a href="/admin/dashboard">Home</a>
                     </li>
 
                     <li>
-                        <a href="clusterform.html">Create Cluster</a>
+                        <a href="/admin/cluster/">Create Cluster</a>
                     </li>
                     <li>
-                        <a href="verify_resources.html">Verify Resources</a>
+                        <a href="/admin/verify_resources/">Verify Resources</a>
                     </li>
 					<li>
 					<button type="button" class="btn btn-default">Register School</button>
@@ -66,9 +66,9 @@
             {% for m in f %}
         <li class="list-group-item">
 
-                School Name : {{ m.data.sname }} | Resource Name : {{ m.data.resname }}
-                <a class="btn btn-outline-success btm-sm" href="/admin/verify_resources/accept/{{m.resid}}">Accept</a>
-                <a class="btn btn-outline-danger btn-sm" href="/admin/verify_resources/decline/{{m.resid}}">Decline</a>
+               <b> School Name</b> : {{ m.data.sname }} | <b>Resource Name</b> : {{ m.data.resname }} &nbsp;
+                <a class="btn btn-outline-success btn-sm" style="background: rgb(17, 156, 17)" href="/admin/verify_resources/accept/{{m.resid}}">Accept</a>
+                <a class="btn btn-outline-danger btn-sm" style="background: rgb(221, 7, 7)" href="/admin/verify_resources/decline/{{m.resid}}">Decline</a>
         </li>
         {% endfor %}
         <h3 style="color:black"> {{text}} </h3>
