@@ -83,20 +83,21 @@ filter: alpha(opacity=99); /* For IE8 and earlier */
 
 </div>
   
-<form action="/home/dashboard/book_slot" method="post" name="form">
-  <div class="form-group">
+<form action="/home/dashboard/book_slot" method="POST" name="form">
+  <div class="form-group text-center">
 From :
-<input type="text" name="fday" class = "form-group-item" >
+<input type="text" name="fday" placeholder="Start Date" class = "form-group-item" >
 </div>
-<div class="text" name="lday">
+<div class="text text-center" name="lday">
   To  :  
-<input type="datetime-local" name="ttime" class="form-group-item">
+<input type="text" name="ttime" placeholder="End Date" class="form-group">
 </div>
 
 <button type="submit" class="btn btn-primary" name="submit">
   BOOK
 </button>
-
+  </form>
+  
 		  <ul class="list-group">
 
         
